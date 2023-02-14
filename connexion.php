@@ -10,6 +10,10 @@ $donnees = [];
 
 $erreurs = [];
 
+if (isset($_COOKIE["se-souvenir-de-moi"]) && !empty($_COOKIE["se-souvenir-de-moi"])) {
+    $donnees = json_decode($_COOKIE["se-souvenir-de-moi"], true);
+}
+
 if (isset($_GET["donnees"]) && !empty($_GET["donnees"])) {
     $donnees = json_decode($_GET["donnees"], true);
 }

@@ -28,6 +28,17 @@ if (empty($erreurs)) {
     if ($_POST["email"] == "connexion@gmail.com" && $_POST["mot-de-passe"] == "qwerty") {
         $succes = "Bravo vous acces a toutes les ressources du site.";
         $_SESSION["utilisateur-connecter"] = $_POST["email"];
+        if (isset($_POST["se-souvenir-de-moi"]) && !empty($_POST["se-souvenir-de-moi"]) && "oui" == $_POST["se-souvenir-de-moi"]) {
+            setcookie(
+                "se-souvenir-de-moi",
+                json_encode($donnees),
+                [
+                    'expires' => time() + 365 * 24 * 3600,
+                    'secure' => true,
+                    'httponly' => true,
+                ]
+            );
+        }
     } else {
         $erreur = "Oups!!! Email ou mot de passe incorrect. Veuillez réessayer.";
     }
